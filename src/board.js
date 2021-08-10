@@ -1,8 +1,8 @@
 class Board {
     constructor() {
-        // create and store a Snake
+        this.snake = new Snake();
         // later we'll store apples
     }
 }
 
-// export Board for the view
+module.exports = Board;
