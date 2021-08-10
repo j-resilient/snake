@@ -1,2 +1,7 @@
 console.log("webpack is working");
-// require view
+const SnakeView = require("./snake-view");
+
+$(() => {
+    const $el = $(".snake");
+    new SnakeView($el);
+})
