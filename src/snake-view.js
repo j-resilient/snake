@@ -1,7 +1,7 @@
 // require board
 class View {
     constructor($el) {
-        // store html container element
+        this.$el = $el;
         // build a board
         // bind a listener to detect key events, use jquery on with "keydown"
         // use setInterval: call step() every half-second
@@ -22,4 +22,4 @@ class View {
     }
 }
 
-// export view class
+module.exports = View;
