@@ -42,4 +42,4 @@ class Snake {
     }
 }
 
-let snake = new Snake();
+module.exports = Snake;
