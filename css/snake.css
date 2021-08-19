@@ -1,13 +1,17 @@
 html,
 body,
 figure,
-h1 {
+h1,
+div {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
   text-align: inherit;
 }
+/* * {
+  box-sizing: border-box;
+} */
 h1 {
     text-align: center;
     font-size: 60px;
@@ -18,4 +22,17 @@ h1 {
     height: 400px;
     width: 400px;
     margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  /* border: 0.5px red solid; */
+}
+
+.green {
+  background-color: green;
 }
