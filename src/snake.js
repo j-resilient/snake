@@ -1,8 +1,8 @@
 class Snake {
     
     constructor() {
-        // I'm picturing a 400x400 grid for the moment
-        this.tail = [[200, 200]];
+        // starts at the center of the grid
+        this.tail = [[9, 9]];
         this.currentDir = "U";
 
         // up, down, right, left
