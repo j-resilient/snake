@@ -1,8 +1,9 @@
 const Snake = require("./snake");
+const Apple = require("./apple");
 class Board {
     constructor() {
         this.snake = new Snake();
-        // later we'll store apples
+        this.apple = apple;
     }
 }
 
