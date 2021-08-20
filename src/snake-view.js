@@ -6,13 +6,16 @@ class View {
         this.board = new Board();
         this._createGrid();
 
-        // for (let i = 0; i < 3; i++) {
-        //     setTimeout(() => {
-        //         this.board.snake.move();
-        //         this.render();
-        //     }, 5000);
-        //     // this.board.snake.turn("R");
-        // }
+
+        setTimeout(() => {
+            this.step();
+            setTimeout(() => {
+                this.step();
+                setTimeout(() => {
+                    this.step();
+                }, 5000);
+            }, 5000);
+        }, 5000);
         // bind a listener to detect key events, use jquery on with "keydown"
         // use setInterval: call step() every half-second
     }
@@ -36,8 +39,8 @@ class View {
     }
 
     step() {
-        // call Snake#move
-        // redraw board - render
+        this.board.snake.move();
+        this.render();
     }
 
     render() {
