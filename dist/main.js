@@ -9,13 +9,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/apple.js":
+/*!**********************!*\
+  !*** ./src/apple.js ***!
+  \**********************/
+/***/ ((module) => {
+
+eval("class Apple {\n    constructor() {\n        this.pos = this._randomPos();\n    }\n\n    _randomPos() {\n        return [Math.round(Math.random() * 20), Math.round(Math.random() * 20)];\n    }\n\n    newApple() {\n        this.pos = this._randomPos();\n    }\n}\n\nmodule.exports = Apple;\n\n//# sourceURL=webpack://snake/./src/apple.js?");
+
+/***/ }),
+
 /***/ "./src/board.js":
 /*!**********************!*\
   !*** ./src/board.js ***!
   \**********************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Snake = __webpack_require__(/*! ./snake */ \"./src/snake.js\");\nclass Board {\n    constructor() {\n        this.snake = new Snake();\n        // later we'll store apples\n    }\n}\n\nmodule.exports = Board;\n\n//# sourceURL=webpack://snake/./src/board.js?");
+eval("const Snake = __webpack_require__(/*! ./snake */ \"./src/snake.js\");\nconst Apple = __webpack_require__(/*! ./apple */ \"./src/apple.js\");\nclass Board {\n    constructor() {\n        this.snake = new Snake();\n        this.apple = new Apple();\n    }\n}\n\nmodule.exports = Board;\n\n//# sourceURL=webpack://snake/./src/board.js?");
 
 /***/ }),
 
@@ -35,7 +45,7 @@ eval("console.log(\"webpack is working\");\nconst SnakeView = __webpack_require_
   \***************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Board = __webpack_require__(/*! ./board */ \"./src/board.js\");\n\nclass View {\n    constructor($el) {\n        this.$el = $el;\n        this.board = new Board();\n        this._createGrid();\n\n        $(document).on(\"keydown\", e => this._handleKeyEvent(e.which) );\n\n        // use setInterval: call step() every half-second\n        setInterval(() => {\n            this.step();\n        }, 3000);\n    }\n\n    _handleKeyEvent(keyCode) {\n        switch (keyCode) {\n            case 38:\n                this.board.snake.turn(\"U\");\n                break;\n            case 40:\n                this.board.snake.turn(\"D\");\n                break;\n            case 39:\n                this.board.snake.turn(\"R\");\n                break;\n            case 37:\n                this.board.snake.turn(\"L\");\n                break;\n        }\n    }\n\n    _createGrid() {\n        for (let row = 0; row < 20; row++) {\n            for (let col = 0; col < 20; col++) {\n                let $square = $('<div></div>');\n                $square.addClass('box');\n                $square.data(\"pos\", [col, row]);\n                // the snake starts at the center of the grid\n                if (col === 9 && row === 9) { $square.addClass('green'); }\n                this.$el.append($square);\n            }\n        }\n    }\n\n    step() {\n        this.board.snake.move();\n        this.render();\n    }\n\n    render() {\n        const $boxes = $(\"div.box\");\n        for (let i = 0; i < $boxes.length; i++) {\n            let $currentBox = $($boxes[i]);\n            let boxPos = $currentBox.data(\"pos\");\n            if (this.board.snake.tail.some(pos => pos[0] === boxPos[0] && pos[1] === boxPos[1])) {\n                $currentBox.addClass('green');\n            } else {\n                $currentBox.removeClass('green');\n            }\n        }\n    }\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack://snake/./src/snake-view.js?");
+eval("const Board = __webpack_require__(/*! ./board */ \"./src/board.js\");\n\nclass View {\n    constructor($el) {\n        this.$el = $el;\n        this.board = new Board();\n        this._createGrid();\n\n        $(document).on(\"keydown\", e => this._handleKeyEvent(e.which) );\n\n        // use setInterval: call step() every half-second\n        setInterval(() => {\n            this.step();\n        }, 3000);\n    }\n\n    _handleKeyEvent(keyCode) {\n        switch (keyCode) {\n            case 38:\n                this.board.snake.turn(\"U\");\n                break;\n            case 40:\n                this.board.snake.turn(\"D\");\n                break;\n            case 39:\n                this.board.snake.turn(\"R\");\n                break;\n            case 37:\n                this.board.snake.turn(\"L\");\n                break;\n        }\n    }\n\n    _createGrid() {\n        for (let row = 0; row < 20; row++) {\n            for (let col = 0; col < 20; col++) {\n                let $square = $('<div></div>');\n                $square.addClass('box');\n                $square.data(\"pos\", [col, row]);\n                // the snake starts at the center of the grid\n                if (col === 9 && row === 9) { $square.addClass('green'); }\n                this.$el.append($square);\n            }\n        }\n    }\n\n    step() {\n        this.board.snake.move();\n        this.render();\n    }\n\n    render() {\n        const $boxes = $(\"div.box\");\n        console.log(this.board.apple.pos);\n        for (let i = 0; i < $boxes.length; i++) {\n            let $currentBox = $($boxes[i]);\n            let boxPos = $currentBox.data(\"pos\");\n            if (this.board.snake.tail.some(pos => pos[0] === boxPos[0] && pos[1] === boxPos[1])) {\n                $currentBox.addClass('green');\n            } else if (this.board.apple.pos[0] === boxPos[0] && this.board.apple.pos[1] === boxPos[1]) {\n                $currentBox.addClass('red');\n            } else {\n                $currentBox.removeClass('green red');\n            }\n        }\n    }\n}\n\nmodule.exports = View;\n\n//# sourceURL=webpack://snake/./src/snake-view.js?");
 
 /***/ }),
 
