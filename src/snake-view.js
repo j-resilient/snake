@@ -51,7 +51,6 @@ class View {
 
     render() {
         const $boxes = $("div.box");
-        console.log(this.board.apple.pos);
         for (let i = 0; i < $boxes.length; i++) {
             let $currentBox = $($boxes[i]);
             let boxPos = $currentBox.data("pos");
