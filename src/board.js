@@ -3,7 +3,7 @@ const Apple = require("./apple");
 class Board {
     constructor() {
         this.snake = new Snake();
-        this.apple = apple;
+        this.apple = new Apple();
     }
 }
 
