@@ -1,14 +1,14 @@
 class Apple {
     constructor() {
-        // pos = random position
+        this.pos = this._randomPos();
     }
 
-    randomPos() {
-        // generate random position
+    _randomPos() {
+        return [Math.round(Math.random() * 20), Math.round(Math.random() * 20)];
     }
 
     newApple() {
-        // generate a new location
+        this.pos = this._randomPos();
     }
 }
 
