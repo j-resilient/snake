@@ -51,13 +51,16 @@ class View {
 
     render() {
         const $boxes = $("div.box");
+        console.log(this.board.apple.pos);
         for (let i = 0; i < $boxes.length; i++) {
             let $currentBox = $($boxes[i]);
             let boxPos = $currentBox.data("pos");
             if (this.board.snake.tail.some(pos => pos[0] === boxPos[0] && pos[1] === boxPos[1])) {
                 $currentBox.addClass('green');
+            } else if (this.board.apple.pos[0] === boxPos[0] && this.board.apple.pos[1] === boxPos[1]) {
+                $currentBox.addClass('red');
             } else {
-                $currentBox.removeClass('green');
+                $currentBox.removeClass('green red');
             }
         }
     }
