@@ -6,18 +6,29 @@ class View {
         this.board = new Board();
         this._createGrid();
 
+        $(document).on("keydown", e => this._handleKeyEvent(e.which) );
 
-        setTimeout(() => {
-            this.step();
-            setTimeout(() => {
-                this.step();
-                setTimeout(() => {
-                    this.step();
-                }, 5000);
-            }, 5000);
-        }, 5000);
-        // bind a listener to detect key events, use jquery on with "keydown"
         // use setInterval: call step() every half-second
+        setInterval(() => {
+            this.step();
+        }, 3000);
+    }
+
+    _handleKeyEvent(keyCode) {
+        switch (keyCode) {
+            case 38:
+                this.board.snake.turn("U");
+                break;
+            case 40:
+                this.board.snake.turn("D");
+                break;
+            case 39:
+                this.board.snake.turn("R");
+                break;
+            case 37:
+                this.board.snake.turn("L");
+                break;
+        }
     }
 
     _createGrid() {
@@ -31,11 +42,6 @@ class View {
                 this.$el.append($square);
             }
         }
-    }
-
-    handleKeyEvent(e) {
-        // look up e.keyCode
-        // turn snake
     }
 
     step() {
