@@ -11,6 +11,7 @@ class View {
         // use setInterval: call step() every half-second
         setInterval(() => {
             this.step();
+            this.board.checkForHit();
         }, 3000);
     }
 
