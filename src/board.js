@@ -7,7 +7,8 @@ class Board {
     }
 
     checkForHit() {
-        if (this.snake.tail.some(pos => pos[0] === this.apple.pos[0] && pos[1] === this.apple.pos[1])) {
+        if (this.snake.tail.some(pos => Snake.equals(pos, this.apple.pos))) {
+            console.log("yo");
             this.apple.newApple();
             // grow the snake tail
         }

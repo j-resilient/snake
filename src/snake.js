@@ -25,15 +25,12 @@ class Snake {
         // add a new segment to the end of the snake
     }
 
-    // static?
     static plus(c1, c2) {
-        // sum and return the coordinates
         return [(c1[0] + c2[0]), (c1[1] + c2[1])];
     }
 
-    // static?
     static equals(c1, c2) {
-        // check if the coordinates are equal
+        return (c1[0] === c2[0] && c1[1] === c2[1]);
     }
 
     // static?
