@@ -57,6 +57,7 @@ class View {
             let boxPos = $currentBox.data("pos");
             if (this.board.snake.tail.some(pos => pos[0] === boxPos[0] && pos[1] === boxPos[1])) {
                 $currentBox.addClass('green');
+                $currentBox.removeClass('red');
             } else if (this.board.apple.pos[0] === boxPos[0] && this.board.apple.pos[1] === boxPos[1]) {
                 $currentBox.addClass('red');
             } else {
