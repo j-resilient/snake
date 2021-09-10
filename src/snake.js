@@ -10,10 +10,12 @@ class Snake {
     }
     
     move() {
-        // move the snake in the current direction
-        for (let i = 0; i < this.tail.length; i++) {
-            this.tail[i] = Snake.plus(this.tail[i], this.dirs[this.currentDir]);
+        // shift every square of the body forward by one
+        for (let i = this.tail.length - 1; i > 0; i--) {
+            this.tail[i] = this.tail[i-1];
         }
+        // move head
+        this.tail[0] = Snake.plus(this.tail[0], this.dirs[this.currentDir]);
     }
 
     turn(dir) {
@@ -22,7 +24,21 @@ class Snake {
     }
 
     addSegment() {
-        // add a new segment to the end of the snake
+        let newCoord = Snake.plus(this.tail[this.tail.length - 1], this.oppDirCoord());
+        this.tail.push(newCoord);
+    }
+
+    oppDirCoord() {
+        switch(this.currentDir) {
+            case "U":
+                return this.dirs["D"];
+            case "D":
+                return this.dirs["U"];
+            case "R":
+                return this.dirs["L"];
+            case "L":
+                return this.dirs["R"];
+        }
     }
 
     static plus(c1, c2) {
