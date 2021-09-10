@@ -9,7 +9,18 @@ class View {
         $(document).on("keydown", e => this._handleKeyEvent(e.which) );
 
         // use setInterval: call step() every half-second
-        setInterval(() => { this.step(); }, 3000);
+        const game = setInterval(() => { 
+            this.step(); 
+            if (this.board.endGame()) { 
+                clearInterval(game); 
+                this.gameOver();
+            }
+        }, 3000);
+    }
+
+    gameOver() {
+        alert("You lose!");
+        $(document).off("keydown");
     }
 
     _handleKeyEvent(keyCode) {
