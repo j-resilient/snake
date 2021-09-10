@@ -8,8 +8,8 @@ class Board {
 
     checkForHit() {
         if (this.snake.tail.some(pos => Snake.equals(pos, this.apple.pos))) {
+            this.snake.addSegment();
             this.apple.newApple();
-            // grow the snake tail
         }
     }
 }
