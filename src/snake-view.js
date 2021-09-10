@@ -9,10 +9,7 @@ class View {
         $(document).on("keydown", e => this._handleKeyEvent(e.which) );
 
         // use setInterval: call step() every half-second
-        setInterval(() => {
-            this.step();
-            this.board.checkForHit();
-        }, 3000);
+        setInterval(() => { this.step(); }, 3000);
     }
 
     _handleKeyEvent(keyCode) {
@@ -47,6 +44,7 @@ class View {
 
     step() {
         this.board.snake.move();
+        this.board.checkForHit();
         this.render();
     }
 
