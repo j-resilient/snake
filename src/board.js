@@ -14,10 +14,15 @@ class Board {
     }
 
     endGame() {
-        if (this.offBoard()) {
+        if (this.offBoard() || this.snakeHitItself()) {
             return true;
         }
         return false;
+    }
+
+    snakeHitItself() {
+        let tail = this.snake.tail.slice(1, this.snake.tail.length);
+        return tail.some(seg => Snake.equals(this.snake.tail[0], seg));
     }
 
     offBoard() {
@@ -30,6 +35,8 @@ class Board {
         }
         return onBoard;
     }
+
+
 }
 
 module.exports = Board;
