@@ -15,7 +15,7 @@ class View {
                 clearInterval(game); 
                 this.gameOver();
             }
-        }, 3000);
+        }, 500);
     }
 
     gameOver() {
